@@ -1,9 +1,10 @@
-import Benefits from "~/components/landing-page/benefits-2";
-import Hero from "~/components/landing-page/hero-1";
-import HeroProduct from "~/assets/nut-ninja/hero-product.png";
-import LandingPageBanner from "~/components/landing-page/banner";
 import Link from "next/link";
 import { StarFilledIcon } from "@radix-ui/react-icons";
+
+import LandingPageBanner from "@timmac/ui/src/components/banner/banner-1";
+import Hero from "@timmac/ui/src/components/hero/hero-1";
+
+import HeroProduct from "~/assets/nut-ninja/hero-product.png";
 
 export default function Page() {
   return (
@@ -72,7 +73,6 @@ export default function Page() {
         ImageAlt="Nut Ninja Bundle"
         ImageClassName="h-auto w-[62rem]"
       />
-      <Benefits />
     </>
   );
 }

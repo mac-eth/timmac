@@ -20,6 +20,7 @@
   "devDependencies": {
     "@timmac/eslint-config": "^0.2.0",
     "@timmac/prettier-config": "^0.1.0",
+    "@timmac/tailwind-config": "^0.1.0",
     "@timmac/tsconfig": "^0.1.0",
     "eslint": "^8.52.0",
     "prettier": "^3.0.3",

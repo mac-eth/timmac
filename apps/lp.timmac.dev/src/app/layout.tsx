@@ -1,4 +1,4 @@
-import "~/styles/globals.css";
+import "@timmac/ui/src/styles.css";
 
 import type { Metadata } from "next";
 

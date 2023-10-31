@@ -15,7 +15,7 @@ export default function LandingPageBanner({
 }: LandingPageBannerProps) {
   return (
     <div
-      className={`relative isolate flex items-center justify-center gap-x-6 overflow-hidden px-6 py-2.5 sm:px-3.5 bg-neutral-50 text-neutral-950 text-lg `}
+      className={`relative isolate flex items-center justify-center gap-x-6 overflow-hidden bg-neutral-50 px-6 py-2.5 text-lg text-neutral-950 sm:px-3.5 `}
     >
       {Color1 && Color2 && (
         <div>
