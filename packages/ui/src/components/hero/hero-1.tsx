@@ -1,6 +1,6 @@
-import { Button } from "~/components/button";
+import Button from "../button";
+import Container from "../sections/container";
 import Image from "next/image";
-import Link from "next/link";
 import type { StaticImageData } from "next/image";
 import { cn } from "~/utils/cn";
 
@@ -31,6 +31,7 @@ export default function LandingPageHero({
 }: LandingPageHeroProps): JSX.Element {
   return (
     <div className={cn("relative isolate h-[90vh] overflow-hidden", className)}>
+      <Container>
         <div className="max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
           <div className=" max-w-2xl flex-shrink-0 text-center md:max-w-2xl md:text-left lg:mx-0 lg:pt-8">
             {SocialProof}
@@ -38,8 +39,8 @@ export default function LandingPageHero({
             {SubText}
             <div className="mt-10 flex items-center justify-center md:justify-start">
               {CtaLink && CtaText && (
-                <Link href={CtaLink} passHref >
                 <Button
+                  href={CtaLink}
                   className={cn(
                     "font-neueEinstellung bg-white text-base text-neutral-950",
                     CtaClassname,
@@ -47,7 +48,6 @@ export default function LandingPageHero({
                 >
                   {CtaText}
                 </Button>
-                                </Link>
               )}
             </div>
           </div>
@@ -64,6 +64,7 @@ export default function LandingPageHero({
             </div>
           </div>
         </div>
+      </Container>
     </div>
   );
 }
