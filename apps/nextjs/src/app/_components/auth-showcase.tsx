@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "@acme/auth";
+import { auth, signIn, signOut } from "@timmac/auth";
 
 export async function AuthShowcase() {
   const session = await auth();
