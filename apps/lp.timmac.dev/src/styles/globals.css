@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@font-face {
+  font-family: "Coolvetica";
+  src:
+    url("../../public/fonts/coolvetica_compressed_hv.eot?") format("eot"),
+    url("../../public/fonts/coolvetica_compressed_hv.woff") format("woff"),
+    url("../../public/fonts/coolvetica_compressed_hv.ttf") format("truetype"),
+    url("../../public/fonts/coolvetica_compressed_hv.svg#CoolveticaCompressedHv-Regular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Einstellung Bold";
+  src: url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/51fdf8021065497210ca54837e1601e9.svg#Neue Einstellung Bold")
+      format("svg");
+}
+
+@font-face {
+  font-family: "Futura PT Light";
+  src: url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/7c9d8cabea7f4697dde2e98c001c5f2d.svg#Futura PT Light")
+      format("svg");
+}
+
+@font-face {
+  font-family: "Futura PT Demi";
+  src: url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/5bdac91b83b25ea168302ffbc40909de.svg#Futura PT Demi")
+      format("svg");
+}
