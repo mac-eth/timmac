@@ -1,13 +1,10 @@
 {
-  "name": "@timmac/tailwind-config",
+  "name": "@timmac/ui",
   "version": "0.1.0",
   "private": true,
-  "main": "index.ts",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "license": "MIT",
-  "files": [
-    "index.ts",
-    "postcss.js"
-  ],
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "lint": "eslint .",
@@ -15,9 +12,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.16",
-    "postcss": "8.4.31",
-    "tailwindcss": "3.3.5"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@timmac/eslint-config": "^0.2.0",

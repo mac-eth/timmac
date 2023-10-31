@@ -1,14 +1,15 @@
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+
+import Button from "~/components/button";
+import Container from "~/components/container";
+import Image from "next/image";
 import Screenshot404 from "~/assets/screenshots/screenshot-404.png";
 import ScreenshotCMC from "~/assets/screenshots/screenshot-cmc.png";
 import ScreenshotPaydeskMobile from "~/assets/screenshots/screenshot-paydesk-mobile.png";
-import Button from "~/components/ui/button";
-import Container from "~/components/ui/container";
-import { useSize } from "~/contexts/sizeContext";
 import { bounceAnimation } from "~/utils/animations";
 import { useParallax } from "~/utils/useParallax";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 import { useRef } from "react";
+import { useSize } from "~/contexts/sizeContext";
 
 export default function Hero() {
   const ref = useRef(null);

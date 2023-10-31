@@ -1,12 +1,13 @@
 "use client";
 
-import Button from "~/components/ui/button";
-import Container from "~/components/ui/container";
-import { useSize } from "~/contexts/sizeContext";
+import { motion, useInView } from "framer-motion";
+
+import Button from "~/components/button";
+import Container from "~/components/container";
 import { bounceAnimation } from "~/utils/animations";
 import { cn } from "~/utils/cn";
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useSize } from "~/contexts/sizeContext";
 
 interface ContentProps {
   children: React.ReactNode;

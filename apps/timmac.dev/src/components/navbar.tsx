@@ -1,5 +1,3 @@
-import { mainMenu } from "~/config/navigation";
-import { socials } from "~/config/socials";
 import {
   bounceAnimation,
   linkAnimation,
@@ -8,11 +6,14 @@ import {
   sidebarAnimation,
   staggeredAnimation,
 } from "~/utils/animations";
-import { useDimensions } from "~/utils/useDimensions";
 import { motion, useCycle } from "framer-motion";
+
+import Container from "~/components/container";
 import Link from "next/link";
+import { mainMenu } from "~/config/navigation";
+import { socials } from "~/config/socials";
+import { useDimensions } from "~/utils/useDimensions";
 import { useRef } from "react";
-import Container from "../ui/container";
 
 const Path = (props: {
   d?: string;
@@ -88,7 +89,7 @@ function MobileNavigation({ open }: { open: boolean }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link className="flex w-full" href={item.href as string}>
+            <Link className="flex w-full" href={item.href }>
               <item.icon className=" h-16 w-16" />
             </Link>
           </motion.li>

@@ -20,8 +20,8 @@
     "typecheck": "turbo typecheck"
   },
   "dependencies": {
-    "@timmac/prettier-config": "^0.1.0",
     "@manypkg/cli": "^0.21.0",
+    "@timmac/prettier-config": "^0.1.0",
     "@turbo/gen": "^1.10.16",
     "prettier": "^3.0.3",
     "turbo": "^1.10.16",

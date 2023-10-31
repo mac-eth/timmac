@@ -1,10 +1,11 @@
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import Container from "~/components/ui/container";
-import { useSize } from "~/contexts/sizeContext";
-import { bounceAnimation } from "~/utils/animations";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
 import { useRef, useState } from "react";
+
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+import Container from "~/components/container";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
+import { useSize } from "~/contexts/sizeContext";
 
 interface AccordianProps {
   name: string;

@@ -1,20 +1,18 @@
 "use client";
 
-import { StarFilledIcon } from "@radix-ui/react-icons";
-import Selfy from "~/assets/me.png";
+import AccordianList from "~/components/accordian";
+import Casestudy from "~/components/casestudy";
+import Content from "~/components/content";
+import Hero from "~/components/hero";
+import MainLayout from "~/components/layouts/main";
+import Navbar from "~/components/navbar";
 import ScreenshotBlockrecipes from "~/assets/screenshots/screenshot-blockrecipes.png";
 import ScreenshotCMC from "~/assets/screenshots/screenshot-cmc.png";
 import ScreenshotGoodmix from "~/assets/screenshots/screenshot-goodmix.png";
-import MainLayout from "~/components/layouts/main";
-import About from "~/components/sections/about";
-import AccordianList from "~/components/sections/accordian";
-import Casestudy from "~/components/sections/casestudy";
-import Content from "~/components/sections/content";
-import Hero from "~/components/sections/hero";
-import Navbar from "~/components/sections/navbar";
-import ScrollingBanner from "~/components/sections/scrollingBanner";
-import Stats from "~/components/sections/stats";
+import ScrollingBanner from "~/components/scrollingBanner";
 import { Services } from "~/config/services";
+import { StarFilledIcon } from "@radix-ui/react-icons";
+import Stats from "~/components/stats";
 
 export default function Home() {
   return (

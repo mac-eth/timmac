@@ -1,11 +1,13 @@
-import { useSize } from "~/contexts/sizeContext";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
 import { bounceAnimation, staggeredAnimationFast } from "~/utils/animations";
-import { useParallax } from "~/utils/useParallax";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
+
+import Container from "~/components/container";
 import Link from "next/link";
+import { useParallax } from "~/utils/useParallax";
 import { useRef } from "react";
-import Container from "../ui/container";
+import { useSize } from "~/contexts/sizeContext";
 
 interface CasestudyProps {
   children?: React.ReactNode;
