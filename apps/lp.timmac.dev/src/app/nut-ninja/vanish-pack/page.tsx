@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
 import LandingPageBanner from "@timmac/ui/src/components/banner/banner-1";
 import Hero from "@timmac/ui/src/components/hero/hero-1";
+import Button from "@timmac/ui/src/components/misc/button";
+import HeroStars from "@timmac/ui/src/components/social-proof/hero-stars";
 
 import HeroProduct from "~/assets/nut-ninja/hero-product.png";
 
@@ -10,13 +11,9 @@ export default function Page() {
   return (
     <>
       <LandingPageBanner
-        BgColor="neutral-50"
-        TextColor="neutral-950"
-        Color1="#ff80b5"
-        Color2="#9089fc"
         MainText={
-          <p className="text-center text-neutral-950 lg:text-left">
-            <strong className="">GET FREE SHIPPING</strong>
+          <p className="text-center lg:text-left">
+            <strong>GET FREE SHIPPING</strong>
             <svg
               viewBox="0 0 2 2"
               className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -32,46 +29,60 @@ export default function Page() {
           </p>
         }
         ButtonText={
-          <Link
-            href="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
-            className={`text-md flex w-full justify-center rounded-full bg-neutral-950 px-4 py-1 font-semibold text-neutral-50 shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 lg:max-w-max lg:flex-none lg:text-sm`}
-          >
+          <span>
             SHOP NOW <span aria-hidden="true">&rarr;</span>
-          </Link>
+          </span>
         }
+        backgroundColor="bg-neutral-50"
+        textColor="text-neutral-950"
+        buttonColor="bg-neutral-950"
+        buttonTextColor="text-neutral-50"
+        accentColor="bg-gradient-to-r from-[#ff80b5] to-[#9089fc]"
       />
       <Hero
-        SocialProof={
-          <div className="font-futuraPT my-8 flex items-center justify-center text-lg uppercase text-white underline lg:justify-start">
-            <div className="flex flex-row ">
-              <StarFilledIcon className="h-7 w-7" />
-              <StarFilledIcon className="h-7 w-7" />
-              <StarFilledIcon className="h-7 w-7" />
-              <StarFilledIcon className="h-7 w-7" />
-              <StarFilledIcon className="h-7 w-7" />
-            </div>
-            <span className="ml-2 flex text-base">100+ 5 Star Reviews </span>
-          </div>
+        socialProofComponent={
+          <HeroStars
+            textColor="text-neutral-50"
+            starsColor="text-[#FFD700]"
+            text={<span className="font-futuraPT">100+ 5 Star Reviews</span>}
+            stars={5}
+            className="mb-4"
+          />
         }
-        MainText={
-          <h1 className="font-neueEinstellung text-5xl font-bold uppercase text-white sm:text-6xl lg:text-[90px]">
+        mainText={
+          <h1 className="font-neueEinstellung">
             Worlds <span className="italic underline">Fastest</span> Hair
             Removal Cream
           </h1>
         }
-        SubText={
-          <p className="mt-6 text-xl text-white lg:text-2xl">
+        subText={
+          <p className="mt-8">
             <span className="font-futuraPTDemi underline">
               ASSASSINATE YOUR PUBIC HAIRS
             </span>{" "}
             WITH THE STEALTH, SPEED AND PRECISION OF NUTNINJA.
           </p>
         }
-        CtaText="BUY NOW & GET FREE SHIPPING!"
-        CtaLink="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
-        ImageURL={HeroProduct}
-        ImageAlt="Nut Ninja Bundle"
-        ImageClassName="h-auto w-[62rem]"
+        ctaComponent={
+          <Button
+            href="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
+            className="mt-12"
+            text={
+              <p>
+                <span className="font-futuraPTDemi">SHOP NOW </span>& GET FREE
+                SHIPPING!
+              </p>
+            }
+            backgroundColor="bg-neutral-50"
+            textColor="text-neutral-950"
+          />
+        }
+        backgroundColor="bg-brand-background" // Replace with actual color class for the background
+        mainTextColor="text-white" // Text color for the main text
+        subTextColor="text-white" // Text color for the subtext
+        imageURL={HeroProduct}
+        imageAlt="Nut Ninja Bundle"
+        imageClassName="h-auto w-[62rem]"
       />
     </>
   );
