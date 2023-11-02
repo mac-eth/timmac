@@ -21,7 +21,7 @@ export default function HeroStars({
   return (
     <div
       className={cn(
-        "flex items-center justify-center text-lg uppercase lg:justify-start",
+        "flex items-center justify-center text-xl uppercase lg:justify-start",
         textColor,
         className,
       )}
@@ -31,7 +31,7 @@ export default function HeroStars({
           <StarFilledIcon key={index} className={`h-7 w-7 ${starsColor}`} />
         ))}
       </div>
-      <span className={cn("ml-2 flex text-base underline", textColor)}>
+      <span className={cn("ml-2 flex text-lg underline", textColor)}>
         {text}
       </span>
     </div>
