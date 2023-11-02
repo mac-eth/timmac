@@ -10,7 +10,7 @@ export default function Container({
   return (
     <section
       className={cn(
-        " mx-auto px-5 md:max-w-screen-xl lg:max-w-screen-2xl ",
+        " px-5 md:max-w-screen-xl lg:mx-auto lg:max-w-screen-2xl ",
         className,
       )}
     >

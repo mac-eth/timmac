@@ -1,44 +1,34 @@
-import React from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 import { cn } from "~/utils/cn";
 
-interface BannerProps {
-  MainText: React.ReactNode;
-  ButtonText: React.ReactNode;
-  BackgroundColor?: string;
-  TextColor?: string;
-  ButtonColor?: string;
-  ButtonTextColor?: string;
-  ButtonHref?: string;
-  AccentColor?: string;
+interface Logo {
+  name: string;
+  url: string;
 }
 
-export default function Banner({
-  MainText,
-  ButtonText,
+interface BigBrandsSocialProofProps {
+  AccentColor?: string;
+  BackgroundColor: string;
+  TextColor: string;
+  Quote: React.ReactNode;
+  Logos: Logo[];
+}
+
+export default function BigBrandsSocialProof({
+  AccentColor,
   BackgroundColor,
   TextColor,
-  ButtonColor,
-  ButtonTextColor,
-  ButtonHref,
-  AccentColor,
-}: BannerProps) {
-  const containerClasses = cn(
-    "relative isolate flex items-center justify-center gap-x-6 overflow-hidden px-6 py-2.5 text-lg sm:px-3.5",
+  Quote,
+  Logos,
+}: BigBrandsSocialProofProps) {
+  const ContainerClass = cn(
+    "flex justify-center py-12 sm:py-16 relative isolate",
     BackgroundColor,
-    TextColor,
-  );
-
-  const buttonClasses = cn(
-    "text-md flex w-full justify-center rounded-full px-4 py-1 font-semibold shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 lg:max-w-max lg:flex-none lg:text-sm ",
-    ButtonColor,
-    ButtonTextColor,
   );
 
   return (
-    <div className={containerClasses}>
-      {/* Left Colored Path */}
+    <div className={ContainerClass}>
       <div
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -71,13 +61,20 @@ export default function Banner({
           }}
         />
       </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:flex-row">
-        {MainText}
-        <Link href={ButtonHref ? ButtonHref : ""} className={buttonClasses}>
-          {ButtonText}
-        </Link>
+      <div className="mx-auto flex max-w-7xl flex-col justify-center px-6 lg:px-8">
+        <h2 className={cn("text-center text-2xl lg:text-2xl", TextColor)}>
+          {Quote}
+        </h2>
+        <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-2 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-2 lg:mx-0 lg:max-w-4xl lg:grid-cols-5 lg:gap-x-6">
+          {Logos.map((logo) => (
+            <Image
+              key={logo.name}
+              className="col-span-2 h-12 w-full object-contain lg:col-span-1"
+              src={logo.url}
+              alt={logo.name}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
