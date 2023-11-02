@@ -1,7 +1,6 @@
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 import LandingPageBanner from "@timmac/ui/src/components/banner/banner-1";
-import ScrollingBanner from "@timmac/ui/src/components/banner/scrolling-banner";
 import Benefits1 from "@timmac/ui/src/components/benefits/benefits-1";
 import HeroFeatures from "@timmac/ui/src/components/hero/auxiliary/hero-features";
 import HeroStars from "@timmac/ui/src/components/hero/auxiliary/hero-stars";
@@ -9,13 +8,18 @@ import Hero from "@timmac/ui/src/components/hero/hero-1";
 import Button from "@timmac/ui/src/components/misc/button";
 import BigBrandsSocialProof from "@timmac/ui/src/components/social-proof/big-brands";
 
-import BenUGC from "~/assets/nut-ninja/ben-model.png";
 import BirchBoxLogoBlack from "~/assets/nut-ninja/birchbox-logo-black.svg";
 import ForbesLogoBlack from "~/assets/nut-ninja/forbes-logo-black.svg";
 import GQLogoBlack from "~/assets/nut-ninja/gq-logo-black.svg";
 import HeroProduct from "~/assets/nut-ninja/hero-product.png";
+import LogoLeaf from "~/assets/nut-ninja/icons/leaf.svg";
+import LogoNatural from "~/assets/nut-ninja/icons/natural.svg";
+import LogoNoBadChecmicals from "~/assets/nut-ninja/icons/no-bad-chemicals.svg";
+import MenGroup from "~/assets/nut-ninja/men.webp";
 import MensHealthLogoBlack from "~/assets/nut-ninja/mens-health-logo-black.svg";
 import MensJournalLogoBlack from "~/assets/nut-ninja/mens-journal-logo-black.svg";
+import ModelStock from "~/assets/nut-ninja/model-stock.jpeg";
+import NutNinjaProduct from "~/assets/nut-ninja/nutninja-package.jpg";
 
 export default function Page() {
   return (
@@ -145,29 +149,33 @@ export default function Page() {
         BackgroundColor="bg-gradient-to-tr from-neutral-950 to-[#1C212B]"
         TitleColor="text-neutral-50"
         TextColor="text-neutral-200"
-        Title="Why Are So Many People Switching to Nutninja?"
-        Description="Nutninja is the fastest and easiest way to remove unwanted hair. No more cuts, knicks, razor burn, or awkward angles. Just smooth, silky skin."
-        ImageURL={BenUGC}
-        ImageAlt="Ben using Nutninja"
-        ImageClassName=" md:absolute bottom-0 left-1/4 h-[22rem] lg:h-[36rem] w-auto object-contain"
+        Title={
+          <span className="font-futuraPTDemi uppercase">
+            Why Is Everyone Switching From Razors To NutNinja?
+          </span>
+        }
+        FeatureClassName={"text-neutral-50 font-futuraPTDemi text-xl uppercase"}
+        ImageURL={MenGroup}
+        ImageAlt="Nutninja"
+        ImageClassName="w-[40rem] h-auto max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
         Features={[
           {
             Name: "No More Cuts, Knicks Or Razor Burn",
             Description:
               "Nutninja is the fastest and easiest way to remove unwanted hair. No more cuts, knicks, razor burn, or awkward angles. Just smooth, silky skin.",
-            Icon: CheckCircledIcon,
+            Icon: LogoNoBadChecmicals as string,
           },
           {
-            Name: "No More Awkward Angles & Itching",
+            Name: "Crafted from Natural Ingredients",
             Description:
               "Nutninja is the fastest and easiest way to remove unwanted hair. No more cuts, knicks, razor burn, or awkward angles. Just smooth, silky skin.",
-            Icon: CheckCircledIcon,
+            Icon: LogoNatural as string,
           },
           {
             Name: "Fastest & Easiest Way To Remove Hair",
             Description:
               "Nutninja is the fastest and easiest way to remove unwanted hair. No more cuts, knicks, razor burn, or awkward angles. Just smooth, silky skin.",
-            Icon: CheckCircledIcon,
+            Icon: LogoLeaf as string,
           },
         ]}
       />
