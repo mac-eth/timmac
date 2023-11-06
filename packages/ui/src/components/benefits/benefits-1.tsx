@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import type { BenefitProps } from "~/types";
 import { cn } from "~/utils/cn";
+import Button from "../misc/button";
 import Container from "../sections/container";
 
 export default function Benefits({
@@ -16,11 +17,12 @@ export default function Benefits({
   ImageAlt,
   ImageClassName,
   Features,
+  Button,
 }: BenefitProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden bg-neutral-950 pt-16 md:py-24",
+        "overflow-hidden bg-neutral-950 py-16 md:py-24",
         BackgroundColor,
       )}
     >
@@ -30,7 +32,7 @@ export default function Benefits({
             <div className=" lg:max-w-lg">
               <h2
                 className={cn(
-                  "mt-2 text-3xl text-neutral-50 sm:text-4xl",
+                  "mt-2 text-center text-3xl text-neutral-50 sm:text-4xl md:text-start",
                   TitleColor,
                 )}
               >
@@ -57,7 +59,7 @@ export default function Benefits({
                     <dt className={cn(" inline", FeatureClassName)}>
                       <Image
                         className={cn(
-                          "absolute left-1 top-1 h-16 w-auto",
+                          "absolute left-1 top-4 h-16 w-auto md:top-1",
                           AccentColor,
                         )}
                         src={feature.Icon}
@@ -77,6 +79,7 @@ export default function Benefits({
             <Image src={ImageURL} alt={ImageAlt} className={ImageClassName} />
           </div>
         </div>
+        {Button && <div className="mt-12 flex justify-center">{Button}</div>}
       </Container>
     </div>
   );
