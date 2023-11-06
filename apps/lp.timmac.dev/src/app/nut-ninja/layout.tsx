@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      className="font-futuraPT relative overflow-x-hidden bg-[#1C212B]"
+      className="bg-white-50 relative overflow-x-hidden font-futuraPT"
       lang="en"
     >
       <body>{children}</body>

@@ -62,14 +62,17 @@ export default function BigBrandsSocialProof({
         />
       </div>
       <div className="mx-auto flex max-w-7xl flex-col justify-center px-6 lg:px-8">
-        <h2 className={cn("text-center text-2xl lg:text-2xl", TextColor)}>
+        <h2 className={cn("text-center text-xl lg:text-2xl", TextColor)}>
           {Quote}
         </h2>
         <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-2 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-2 lg:mx-0 lg:max-w-4xl lg:grid-cols-5 lg:gap-x-6">
-          {Logos.map((logo) => (
+          {Logos.map((logo, index) => (
             <Image
               key={logo.name}
-              className="col-span-2 h-12 w-full object-contain lg:col-span-1"
+              className={
+                `col-span-2 h-12 w-full object-contain sm:col-start-auto lg:col-span-1` +
+                (index === 4 ? " col-start-2" : "")
+              }
               src={logo.url}
               alt={logo.name}
             />

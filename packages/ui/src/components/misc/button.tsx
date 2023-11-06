@@ -9,6 +9,7 @@ interface ButtonProps {
   backgroundColor?: string;
   href: string;
   className?: string;
+  underText?: React.ReactNode;
 }
 
 export default function Button({
@@ -18,13 +19,14 @@ export default function Button({
   backgroundColor = "bg-white", // Default background color
   href,
   className,
+  underText,
 }: ButtonProps): JSX.Element {
   return (
-    <div className="flex justify-center md:justify-start">
-      <Link href={href} passHref>
+    <Link href={href} passHref className="flex-col items-start md:flex">
+      <div className="flex flex-col items-center">
         <button
           className={cn(
-            "flex items-center justify-center whitespace-nowrap rounded-full px-8 py-4 text-xl font-medium shadow-md transition-colors duration-300 hover:bg-neutral-300 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none",
+            "flex items-center justify-center whitespace-nowrap rounded-full px-8 py-4 text-xl font-medium shadow-md transition-all duration-300 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none",
             textColor,
             backgroundColor,
             className,
@@ -33,7 +35,8 @@ export default function Button({
           {text}
           {logo && <span className="ml-2">{logo}</span>}
         </button>
-      </Link>
-    </div>
+        {underText && underText}
+      </div>
+    </Link>
   );
 }

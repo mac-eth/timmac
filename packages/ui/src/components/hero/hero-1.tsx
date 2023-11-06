@@ -47,7 +47,7 @@ export default function LandingPageHero({
   return (
     <div className={containerClasses}>
       <Container>
-        <div className="px:6 max-w-7xl pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
+        <div className="max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
           <div className="max-w-2xl flex-shrink-0 text-center md:max-w-2xl md:text-left lg:mx-0 lg:flex lg:flex-col lg:justify-center lg:pt-8">
             {socialProofComponent}
             <div className={mainTextClasses}>{mainText}</div>

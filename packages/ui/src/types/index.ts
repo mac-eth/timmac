@@ -16,4 +16,5 @@ export interface BenefitProps {
     Description: string;
     Icon: StaticImageData;
   }[];
+  Button: React.ReactNode;
 }

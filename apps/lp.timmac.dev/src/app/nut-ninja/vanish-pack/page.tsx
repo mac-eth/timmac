@@ -6,7 +6,9 @@ import HeroFeatures from "@timmac/ui/src/components/hero/auxiliary/hero-features
 import HeroStars from "@timmac/ui/src/components/hero/auxiliary/hero-stars";
 import Hero from "@timmac/ui/src/components/hero/hero-1";
 import Button from "@timmac/ui/src/components/misc/button";
+import ProductSection from "@timmac/ui/src/components/products/product-section";
 import BigBrandsSocialProof from "@timmac/ui/src/components/social-proof/big-brands";
+import TestimonialCarousel from "@timmac/ui/src/components/social-proof/testimonials";
 
 import BirchBoxLogoBlack from "~/assets/nut-ninja/birchbox-logo-black.svg";
 import ForbesLogoBlack from "~/assets/nut-ninja/forbes-logo-black.svg";
@@ -15,11 +17,10 @@ import HeroProduct from "~/assets/nut-ninja/hero-product.png";
 import LogoLeaf from "~/assets/nut-ninja/icons/leaf.svg";
 import LogoNatural from "~/assets/nut-ninja/icons/natural.svg";
 import LogoNoBadChecmicals from "~/assets/nut-ninja/icons/no-bad-chemicals.svg";
+import ManApplyingCream from "~/assets/nut-ninja/Man-Applying-Face-Cream-Skincare.jpg";
 import MenGroup from "~/assets/nut-ninja/men.webp";
 import MensHealthLogoBlack from "~/assets/nut-ninja/mens-health-logo-black.svg";
 import MensJournalLogoBlack from "~/assets/nut-ninja/mens-journal-logo-black.svg";
-import ModelStock from "~/assets/nut-ninja/model-stock.jpeg";
-import NutNinjaProduct from "~/assets/nut-ninja/nutninja-package.jpg";
 
 export default function Page() {
   return (
@@ -59,7 +60,7 @@ export default function Page() {
           <HeroStars
             textColor="text-neutral-50"
             starsColor="text-[#FFD700]"
-            text={<span className="font-futuraPT">100+ 5 Star Reviews</span>}
+            text={<span className="font-futuraPT">10,000+ 5 Star Reviews</span>}
             stars={5}
             className="mb-8 lg:mb-4"
           />
@@ -103,11 +104,18 @@ export default function Page() {
             }
             backgroundColor="bg-neutral-50"
             textColor="text-neutral-950"
+            underText={
+              <p className="mt-2 items-center text-neutral-50">
+                <span className="text-md uppercase">
+                  14-Day Satisfaction Guarantee
+                </span>
+              </p>
+            }
           />
         }
-        backgroundColor="bg-brand-background" // Replace with actual color class for the background
-        mainTextColor="text-white" // Text color for the main text
-        subTextColor="text-white" // Text color for the subtext
+        backgroundColor="bg-gradient-to-tr from-[#1C212B] to-neutral-950" // Replace with actual color class for the background
+        mainTextColor="text-neutral-50" // Text color for the main text
+        subTextColor="text-neutral-50" // Text color for the subtext
         imageURL={HeroProduct}
         imageAlt="Nut Ninja Bundle"
         imageClassName="h-auto w-[62rem]"
@@ -157,7 +165,7 @@ export default function Page() {
         FeatureClassName={"text-neutral-50 font-futuraPTDemi text-xl uppercase"}
         ImageURL={MenGroup}
         ImageAlt="Nutninja"
-        ImageClassName="w-[40rem] h-auto max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10"
+        ImageClassName="w-[24rem] md:w-[40rem] h-auto max-w-none rounded-xl shadow-xl ring-neutral-50 ring-1"
         Features={[
           {
             Name: "No More Cuts, Knicks Or Razor Burn",
@@ -178,7 +186,73 @@ export default function Page() {
             Icon: LogoLeaf as string,
           },
         ]}
+        Button={
+          <Button
+            href="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
+            text={
+              <p className="uppercase">
+                Join The <span className="font-futuraPTDemi">#NutNation</span>{" "}
+                Now!
+              </p>
+            }
+            backgroundColor="bg-neutral-50"
+            textColor="text-neutral-950"
+            underText={
+              <p className="mt-2 items-center text-neutral-50">
+                <span className="text-md uppercase underline">
+                  14-Day Satisfaction Guarantee
+                </span>
+              </p>
+            }
+          />
+        }
       />
+      <TestimonialCarousel
+        testimonialCards={[
+          {
+            imageURL: ManApplyingCream,
+            imageAlt: "Testimonial",
+            cardHeadingText: "NutNinja has been a gamechanger!",
+            cardText:
+              "I'm so happy I stopped using razors and started using NutNinja! It's so easy to use and I don't have to worry about razor burn or cuts anymore. I'm never going back to razors again!",
+            author: "John Doe",
+            stars: 5,
+          },
+          {
+            imageURL: ManApplyingCream,
+            imageAlt: "Testimonial",
+            cardHeadingText: "NutNinja has been a gamechanger!",
+            cardText:
+              "I'm so happy I stopped using razors and started using NutNinja! It's so easy to use and I don't have to worry about razor burn or cuts anymore. I'm never going back to razors again!",
+            author: "John Doe",
+            stars: 5,
+          },
+          {
+            imageURL: ManApplyingCream,
+            imageAlt: "Testimonial",
+            cardHeadingText: "NutNinja has been a gamechanger!",
+            cardText:
+              "I'm so happy I stopped using razors and started using NutNinja! It's so easy to use and I don't have to worry about razor burn or cuts anymore. I'm never going back to razors again!",
+            author: "John Doe",
+            stars: 5,
+          },
+        ]}
+        sectionTitle={
+          <h3 className="font-futuraPTDemi uppercase">
+            JOIN THE <span className="underline">#NutNation</span>!
+          </h3>
+        }
+        button={
+          <Button
+            text="Shop Now"
+            href="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
+            className="mt-16"
+            backgroundColor="bg-neutral-950"
+            textColor="text-neutral-50"
+          />
+        }
+      />
+      <ProductSection />
     </>
   );
 }
