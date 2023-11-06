@@ -5,11 +5,12 @@
   "scripts": {
     "build": "pnpm next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "dev": "pnpm next dev",
+    "dev": "pnpm with-env next dev",
     "lint": "next lint",
     "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
     "start": "pnpm next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
@@ -18,6 +19,7 @@
     "@tanstack/react-query": "^5.0.5",
     "@tanstack/react-query-devtools": "^5.4.2",
     "@tanstack/react-query-next-experimental": "5.0.5",
+    "@timmac/payload-config": "^1.0.0",
     "@trpc/client": "next",
     "@trpc/next": "next",
     "@trpc/react-query": "next",

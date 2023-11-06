@@ -40,6 +40,7 @@
     "NEXTAUTH_URL",
     "DATABASE_URI",
     "PAYLOAD_SECRET",
-    "HOST_NAME"
+    "HOST_NAME",
+    "API_HOST"
   ]
 }
