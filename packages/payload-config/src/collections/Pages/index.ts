@@ -40,4 +40,39 @@ export const Pages: CollectionConfig = {
     tenant,
     richText(),
   ],
+  endpoints: [
+    {
+      path: "/findByTenantSlugAndPageSlug/:tenantSlug/:pageSlug",
+      method: "get",
+      handler: async (req, res, next) => {
+        const tenant = await req.payload.find({
+          collection: "tenants",
+          where: {
+            slug: { equals: req.params.tenantSlug },
+          },
+        });
+
+        if (!tenant.docs[0]) {
+          res.status(404).send("Tenant not found");
+          return;
+        }
+
+        const page = await req.payload.find({
+          collection: "pages",
+          where: {
+            and: [
+              { slug: { equals: req.params.pageSlug } },
+              { tenant: { equals: tenant.docs[0].id } },
+            ],
+          },
+        });
+
+        if (page.docs[0]) {
+          res.status(200).send(page.docs[0]);
+        } else {
+          res.status(404).send("Page not found in tenant");
+        }
+      },
+    },
+  ],
 };

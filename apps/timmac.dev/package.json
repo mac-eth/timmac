@@ -36,7 +36,7 @@
     "@timmac/prettier-config": "^0.1.0",
     "@timmac/tsconfig": "^0.1.0",
     "@timmac/ui": "^0.1.0",
-    "@types/node": "^18.18.7",
+    "@types/node": "^20",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "dotenv-cli": "^7.3.0",
