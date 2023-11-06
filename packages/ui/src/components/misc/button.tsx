@@ -22,8 +22,8 @@ export default function Button({
   underText,
 }: ButtonProps): JSX.Element {
   return (
-    <Link href={href} passHref className="flex-col items-start md:flex">
-      <div className="flex flex-col items-center">
+    <Link href={href} passHref className="w-full flex-col items-start">
+      <div className="flex flex-col items-center md:w-full">
         <button
           className={cn(
             "flex items-center justify-center whitespace-nowrap rounded-full px-8 py-4 text-xl font-medium shadow-md transition-all duration-300 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none",
