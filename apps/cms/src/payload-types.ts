@@ -64,36 +64,57 @@ export interface Page {
   slug?: string | null;
   tenant?: (string | null) | Tenant;
   content?:
-    | {
-        hide?: boolean | null;
-        style?: ('default' | 'scrolling') | null;
-        colourProfile?: ('profile1' | 'profile2') | null;
-        mainText?:
-          | {
-              [k: string]: unknown;
-            }[]
-          | null;
-        button?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('default' | 'badge' | 'link') | null;
-                size?: ('compact' | 'default' | 'large') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'banner';
-      }[]
+    | (
+        | {
+            hide?: boolean | null;
+            style?: ('default' | 'scrolling') | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            mainText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            button?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?: {
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null;
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('default' | 'badge' | 'link') | null;
+                    size?: ('compact' | 'default' | 'large') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'banner';
+          }
+        | {
+            hide?: boolean | null;
+            style?: 'default' | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            mainText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            subText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;

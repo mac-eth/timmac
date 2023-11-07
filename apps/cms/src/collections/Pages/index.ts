@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload/types";
 
 import { BannerBlock } from "../../blocks/banner";
+import { HeroBlock } from "../../blocks/Hero";
 import richText from "../../fields/richText";
 import { tenant } from "../../fields/tenant";
 import { banner } from "../../fields/ui-components/banner";
@@ -70,7 +71,7 @@ export const Pages: CollectionConfig = {
     {
       name: "content",
       type: "blocks",
-      blocks: [BannerBlock],
+      blocks: [BannerBlock, HeroBlock],
     },
   ],
   endpoints: [

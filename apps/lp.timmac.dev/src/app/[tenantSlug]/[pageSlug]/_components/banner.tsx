@@ -6,30 +6,11 @@ import { cn } from "../../../../utils/cn";
 import type { LexicalHelperType, SerializedLexicalNode } from "./lexical";
 import Serialize from "./lexical";
 
-export type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
-  ? 1
-  : 2) extends <T>() => T extends Y ? 1 : 2
-  ? A
-  : B;
-
-export type ExtractBannerType<T> = T extends (infer U)[]
-  ? IfEquals<
-      U extends { blockType: infer BT }
-        ? BT extends "banner"
-          ? true
-          : false
-        : false,
-      true,
-      U,
-      never
-    >
-  : never;
-
-export type BannerType = ExtractBannerType<Page["content"]>;
+type NonNullableArray<T> = T extends (infer U)[] ? U : never;
+type ContentItem = NonNullableArray<NonNullable<Page["content"]>>;
+export type BannerType = Extract<ContentItem, { blockType: "banner" }>;
 
 export default function Banner({ banner }: { banner: BannerType }) {
-  console.log("B", banner);
-
   const style = banner?.style ?? "default";
 
   let buttonHref;
@@ -42,15 +23,6 @@ export default function Banner({ banner }: { banner: BannerType }) {
   if (banner.hide) {
     return <></>;
   }
-
-  //console.log(banner);
-
-  console.log(
-    cn(
-      banner.colourProfile === "profile1" && "bg-backgroundProfile1",
-      banner.colourProfile === "profile2" && "bg-backgroundProfile2",
-    ),
-  );
 
   switch (style) {
     case "scrolling":
