@@ -24,6 +24,8 @@ interface TestimonialCardProps {
 interface TestimonialCarouselProps {
   sectionTitle: React.ReactNode;
   mainTextColor?: string;
+  subText?: React.ReactNode;
+  subTextColor?: string;
   mainSectionColor?: string;
   testimonialCards: TestimonialCardProps[];
   button: React.ReactNode;
@@ -91,13 +93,20 @@ function TestimonialCard({
 export default function TestimonialCarousel({
   sectionTitle,
   mainTextColor,
+  subText,
+  subTextColor,
   mainSectionColor,
   testimonialCards,
   button,
 }: TestimonialCarouselProps) {
   const mainTextClasses = cn(
-    "text-4xl sm:text-5xl lg:text-6xl text-neutral-950",
+    "mt-2 font-neueEinstellung text-4xl tracking-tight sm:text-5xl",
     mainTextColor,
+  );
+
+  const subTextClasses = cn(
+    "mx-auto mt-6 max-w-2xl text-center text-2xl",
+    subTextColor,
   );
 
   const mainSectionClasses = cn(
@@ -107,16 +116,20 @@ export default function TestimonialCarousel({
 
   return (
     <Container className={mainSectionClasses}>
-      <div className="mx-auto max-w-4xl sm:text-center">
-        <span className={mainTextClasses}>{sectionTitle}</span>
+      <div className="mx-auto max-w-4xl text-center">
+        <div className={mainTextClasses}>{sectionTitle}</div>
       </div>
+      <div className={subTextClasses}>{subText}</div>
 
       <ul
         role="list"
         className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-6xl lg:grid-cols-3"
       >
         {testimonialCards.map((testimonialCard) => (
-          <TestimonialCard {...testimonialCard} />
+          <TestimonialCard
+            {...testimonialCard}
+            key={testimonialCard.imageAlt}
+          />
         ))}
       </ul>
       {button}

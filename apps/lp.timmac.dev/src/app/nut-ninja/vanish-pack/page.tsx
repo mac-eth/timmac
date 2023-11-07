@@ -10,6 +10,9 @@ import ProductSection from "@timmac/ui/src/components/products/product-section";
 import BigBrandsSocialProof from "@timmac/ui/src/components/social-proof/big-brands";
 import TestimonialCarousel from "@timmac/ui/src/components/social-proof/testimonials";
 
+import MonthBundle1 from "~/assets/nut-ninja/1mth_1080x1080.png";
+import MonthBundle2 from "~/assets/nut-ninja/2mth_1080x1080.png";
+import MonthBundle3 from "~/assets/nut-ninja/3mth_1080x1080.png";
 import BirchBoxLogoBlack from "~/assets/nut-ninja/birchbox-logo-black.svg";
 import ForbesLogoBlack from "~/assets/nut-ninja/forbes-logo-black.svg";
 import GQLogoBlack from "~/assets/nut-ninja/gq-logo-black.svg";
@@ -21,6 +24,54 @@ import ManApplyingCream from "~/assets/nut-ninja/Man-Applying-Face-Cream-Skincar
 import MenGroup from "~/assets/nut-ninja/men.webp";
 import MensHealthLogoBlack from "~/assets/nut-ninja/mens-health-logo-black.svg";
 import MensJournalLogoBlack from "~/assets/nut-ninja/mens-journal-logo-black.svg";
+
+const products = [
+  {
+    name: "1 Month Supply",
+    id: "product-1month",
+    href: "#",
+    price: "$99.95",
+    includes: [
+      "1x Ninja Exfoliant",
+      "1x Stealth Striker Lotion",
+      "1x Pube Assassin Cream",
+    ],
+    mostPopular: false,
+    imageURL: MonthBundle1,
+    imageAlt: "Monthly Supply",
+  },
+  {
+    name: "2 Month Supply",
+    id: "product-2month",
+    href: "#",
+    price: "$129.95",
+    comparisonPrice: "$150",
+    includes: [
+      "1x Ninja Exfoliant",
+      "1x Stealth Striker Lotion",
+      "2x Pube Assassin Cream",
+      "1x Shower Loofah",
+    ],
+    mostPopular: true,
+    imageURL: MonthBundle2,
+    imageAlt: "x2 Month Supply",
+  },
+  {
+    name: "3 Month Supply",
+    id: "product-3month",
+    href: "#",
+    price: "$154.95",
+    comparisonPrice: "$190",
+    includes: [
+      "1x Ninja Exfoliant",
+      "2x Stealth Striker Moisturiser",
+      "3x Pube Assassin Cream",
+    ],
+    mostPopular: false,
+    imageURL: MonthBundle3,
+    imageAlt: "x3 Month Supply",
+  },
+];
 
 export default function Page() {
   return (
@@ -95,7 +146,7 @@ export default function Page() {
         ctaComponent={
           <Button
             href="https://trynutninja.com/checkouts/cn/c1-0b37647ad9552aeb92d0ad67d51efe5f"
-            className="mt-12"
+            className="mt-12 "
             text={
               <p>
                 <span className="font-futuraPTDemi">SHOP NOW </span>& GET FREE
@@ -242,6 +293,13 @@ export default function Page() {
             JOIN THE <span className="underline">#NutNation</span>!
           </h3>
         }
+        subText={
+          <p>
+            1000&apos;s of Blokes across the globe use NutNinja on the regular!
+            Here&apos;s what they have to say!{" "}
+          </p>
+        }
+        subTextColor="text-neutral-700"
         button={
           <Button
             text="Shop Now"
@@ -252,7 +310,15 @@ export default function Page() {
           />
         }
       />
-      <ProductSection />
+      <ProductSection
+        products={products}
+        icon={
+          <CheckCircledIcon
+            className="h-6 w-5 flex-none text-neutral-50"
+            aria-hidden="true"
+          />
+        }
+      />
     </>
   );
 }
