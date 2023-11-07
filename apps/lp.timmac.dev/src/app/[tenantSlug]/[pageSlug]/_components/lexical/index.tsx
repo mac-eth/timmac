@@ -33,6 +33,12 @@ interface Props {
   };
 }
 
+export interface LexicalHelperType {
+  root: {
+    children: unknown;
+  };
+}
+
 export default function Serialize({ nodes, tailwindExpansions }: Props) {
   return (
     <Fragment>

@@ -11,13 +11,13 @@ export interface Config {
     users: User;
     tenants: Tenant;
     pages: Page;
-    'theme-multi-tenant-collection': ThemeMultiTenantCollection;
     media: Media;
+    'branding-multi-tenant-collection': BrandingMultiTenantCollection;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   globals: {
-    theme: Theme;
+    branding: Branding;
   };
 }
 export interface User {
@@ -62,54 +62,39 @@ export interface Page {
   tenantSlug?: string | null;
   title: string;
   slug?: string | null;
-  banner?: {
-    showBanner?: boolean | null;
-    style?: ('default' | 'scrolling') | null;
-    mainText?:
-      | {
-          [k: string]: unknown;
-        }[]
-      | null;
-    button?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?: {
-              relationTo: 'pages';
-              value: string | Page;
-            } | null;
-            url?: string | null;
-            label: string;
-            appearance?: ('default' | 'badge' | 'link') | null;
-            size?: ('compact' | 'default' | 'large') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-  };
   tenant?: (string | null) | Tenant;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface ThemeMultiTenantCollection {
-  id: string;
-  colours?: {
-    background?: string | null;
-    foreground?: string | null;
-    primary?: string | null;
-    primaryForeground?: string | null;
-    secondary?: string | null;
-    secondaryForeground?: string | null;
-    muted?: string | null;
-    mutedForeground?: string | null;
-    accent?: string | null;
-    accentForeground?: string | null;
-    destructive?: string | null;
-    destructiveForeground?: string | null;
-    radius?: string | null;
-  };
-  tenant?: (string | null) | Tenant;
+  content?:
+    | {
+        hide?: boolean | null;
+        style?: ('default' | 'scrolling') | null;
+        colourProfile?: ('profile1' | 'profile2') | null;
+        mainText?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        button?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'badge' | 'link') | null;
+                size?: ('compact' | 'default' | 'large') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'banner';
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -142,6 +127,26 @@ export interface Media {
     };
   };
 }
+export interface BrandingMultiTenantCollection {
+  id: string;
+  profile1?: {
+    textColour?: string | null;
+    backgroundColour?: string | null;
+    primaryColour?: string | null;
+    secondaryColour?: string | null;
+    accentColour?: string | null;
+  };
+  profile2?: {
+    textColour?: string | null;
+    backgroundColour?: string | null;
+    primaryColour?: string | null;
+    secondaryColour?: string | null;
+    accentColour?: string | null;
+  };
+  tenant?: (string | null) | Tenant;
+  updatedAt: string;
+  createdAt: string;
+}
 export interface PayloadPreference {
   id: string;
   user: {
@@ -168,24 +173,22 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-export interface Theme {
+export interface Branding {
   id: string;
-  colours?: {
-    background?: string | null;
-    foreground?: string | null;
-    primary?: string | null;
-    primaryForeground?: string | null;
-    secondary?: string | null;
-    secondaryForeground?: string | null;
-    muted?: string | null;
-    mutedForeground?: string | null;
-    accent?: string | null;
-    accentForeground?: string | null;
-    destructive?: string | null;
-    destructiveForeground?: string | null;
-    radius?: string | null;
+  profile1?: {
+    textColour?: string | null;
+    backgroundColour?: string | null;
+    primaryColour?: string | null;
+    secondaryColour?: string | null;
+    accentColour?: string | null;
   };
-  tenant?: (string | null) | Tenant;
+  profile2?: {
+    textColour?: string | null;
+    backgroundColour?: string | null;
+    primaryColour?: string | null;
+    secondaryColour?: string | null;
+    accentColour?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }

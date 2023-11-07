@@ -1,4 +1,4 @@
-import type { Theme } from "@timmac/cms/src/payload-types";
+import type { Branding } from "@timmac/cms/src/payload-types";
 
 import "../../globals.css";
 
@@ -15,7 +15,7 @@ function hexToRgb(hex: string) {
 
 async function getData({ tenantSlug }: { tenantSlug: string }) {
   const res = await fetch(
-    `${process.env.API_HOST}/api/theme-multi-tenant-collection/findByTenantSlug/${tenantSlug}`,
+    `${process.env.API_HOST}/api/branding-multi-tenant-collection/findByTenantSlug/${tenantSlug}`,
     { cache: "no-store" },
   );
 
@@ -24,7 +24,7 @@ async function getData({ tenantSlug }: { tenantSlug: string }) {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json() as Promise<Theme>;
+  return res.json() as Promise<Branding>;
 }
 
 export default async function Layout({
@@ -35,28 +35,51 @@ export default async function Layout({
   params: { tenantSlug: string };
 }) {
   const { tenantSlug } = params;
-  const theme = await getData({ tenantSlug });
+  const branding = await getData({ tenantSlug });
 
-  const background = hexToRgb(theme.colours?.background ?? "#000000");
-  const foreground = hexToRgb(theme.colours?.foreground ?? "#000000");
-  const primary = hexToRgb(theme.colours?.primary ?? "#000000");
-  const primaryForeground = hexToRgb(
-    theme.colours?.primaryForeground ?? "#000000",
+  // profile1
+  const backgroundProfile1 = hexToRgb(
+    branding.profile1?.backgroundColour ?? "#000000",
   );
-  const secondary = hexToRgb(theme.colours?.secondary ?? "#000000");
-  const secondaryForeground = hexToRgb(
-    theme.colours?.secondaryForeground ?? "#000000",
+  const textProfile1 = hexToRgb(branding.profile1?.textColour ?? "#000000");
+  const primaryProfile1 = hexToRgb(
+    branding.profile1?.primaryColour ?? "#000000",
   );
-  const destructive = hexToRgb(theme.colours?.destructive ?? "#000000");
-  const destructiveForeground = hexToRgb(
-    theme.colours?.destructiveForeground ?? "#000000",
+  const secondaryProfile1 = hexToRgb(
+    branding.profile1?.secondaryColour ?? "#000000",
   );
-  const muted = hexToRgb(theme.colours?.muted ?? "#000000");
-  const mutedForeground = hexToRgb(theme.colours?.mutedForeground ?? "#000000");
-  const accent = hexToRgb(theme.colours?.accent ?? "#000000");
-  const accentForeground = hexToRgb(
-    theme.colours?.accentForeground ?? "#000000",
+  const accentProfile1 = hexToRgb(branding.profile1?.accentColour ?? "#000000");
+
+  // profile2
+  const backgroundProfile2 = hexToRgb(
+    branding.profile2?.backgroundColour ?? "#000000",
   );
+  const textProfile2 = hexToRgb(branding.profile2?.textColour ?? "#000000");
+  const primaryProfile2 = hexToRgb(
+    branding.profile2?.primaryColour ?? "#000000",
+  );
+  const secondaryProfile2 = hexToRgb(
+    branding.profile2?.secondaryColour ?? "#000000",
+  );
+  const accentProfile2 = hexToRgb(branding.profile2?.accentColour ?? "#000000");
+
+  console.log(`
+    @layer base {
+      :root {
+        --background-profile1: ${backgroundProfile1?.r}, ${backgroundProfile1?.g}, ${backgroundProfile1?.b};
+        --text-profile1: ${textProfile1?.r}, ${textProfile1?.g}, ${textProfile1?.b};
+        --primary-profile1: ${primaryProfile1?.r}, ${primaryProfile1?.g}, ${primaryProfile1?.b};
+        --secondary-profile1: ${secondaryProfile1?.r}, ${secondaryProfile1?.g}, ${secondaryProfile1?.b};
+        --accent-profile1: ${accentProfile1?.r}, ${accentProfile1?.g}, ${accentProfile1?.b};
+
+        --background-profile2: ${backgroundProfile2?.r}, ${backgroundProfile2?.g}, ${backgroundProfile2?.b};
+        --text-profile2: ${textProfile2?.r}, ${textProfile2?.g}, ${textProfile2?.b};
+        --primary-profile2: ${primaryProfile2?.r}, ${primaryProfile2?.g}, ${primaryProfile2?.b};
+        --secondary-profile2: ${secondaryProfile2?.r}, ${secondaryProfile2?.g}, ${secondaryProfile2?.b};
+        --accent-profile2: ${accentProfile2?.r}, ${accentProfile2?.g}, ${accentProfile2?.b};
+      }
+    }
+  `);
 
   return (
     <html
@@ -64,26 +87,25 @@ export default async function Layout({
       className="bg-white-50 relative overflow-x-hidden font-futuraPT"
     >
       <head>
-        <style>{`
-        @layer base {
-          :root {
-            --background: ${background?.r}, ${background?.g}, ${background?.b};
-            --foreground: ${foreground?.r}, ${foreground?.g}, ${foreground?.b};
-            --primary: ${primary?.r}, ${primary?.g}, ${primary?.b};
-            --primary-foreground: ${primaryForeground?.r}, ${primaryForeground?.g}, ${primaryForeground?.b};
-            --secondary: ${secondary?.r}, ${secondary?.g}, ${secondary?.b};
-            --secondary-foreground: ${secondaryForeground?.r}, ${secondaryForeground?.g}, ${secondaryForeground?.b};
-            --destructive: ${destructive?.r}, ${destructive?.g}, ${destructive?.b};
-            --destructive-foreground: ${destructiveForeground?.r}, ${destructiveForeground?.g}, ${destructiveForeground?.b};
-            --muted: ${muted?.r}, ${muted?.g}, ${muted?.b}; 
-            --muted-foreground: ${mutedForeground?.r}, ${mutedForeground?.g}, ${mutedForeground?.b};
-            --accent: ${accent?.r}, ${accent?.g}, ${accent?.b};
-            --accent-foreground: ${accentForeground?.r}, ${accentForeground?.g}, ${accentForeground?.b};
-            --radius: ${theme.colours?.radius ?? "0.5rem"}
-          }
-        }
+        <style>
+          {`
+          @layer base {
+            :root {
+              --background-profile1: ${backgroundProfile1?.r}, ${backgroundProfile1?.g}, ${backgroundProfile1?.b};
+              --text-profile1: ${textProfile1?.r}, ${textProfile1?.g}, ${textProfile1?.b};
+              --primary-profile1: ${primaryProfile1?.r}, ${primaryProfile1?.g}, ${primaryProfile1?.b};
+              --secondary-profile1: ${secondaryProfile1?.r}, ${secondaryProfile1?.g}, ${secondaryProfile1?.b};
+              --accent-profile1: ${accentProfile1?.r}, ${accentProfile1?.g}, ${accentProfile1?.b};
 
-        `}</style>
+              --background-profile2: ${backgroundProfile2?.r}, ${backgroundProfile2?.g}, ${backgroundProfile2?.b};
+              --text-profile2: ${textProfile2?.r}, ${textProfile2?.g}, ${textProfile2?.b};
+              --primary-profile2: ${primaryProfile2?.r}, ${primaryProfile2?.g}, ${primaryProfile2?.b};
+              --secondary-profile2: ${secondaryProfile2?.r}, ${secondaryProfile2?.g}, ${secondaryProfile2?.b};
+              --accent-profile2: ${accentProfile2?.r}, ${accentProfile2?.g}, ${accentProfile2?.b};
+            }
+          }
+        `}
+        </style>
       </head>
       <body>{children}</body>
     </html>

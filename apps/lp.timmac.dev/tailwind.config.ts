@@ -11,33 +11,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgb(var(--background))",
-        foreground: "rgb(var(--foreground))",
-        primary: {
-          DEFAULT: "rgb(var(--primary))",
-          foreground: "rgb(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "rgb(var(--secondary))",
-          foreground: "rgb(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "rgb(var(--destructive))",
-          foreground: "rgb(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "rgb(var(--muted))",
-          foreground: "rgb(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "rgb(var(--accent))",
-          foreground: "rgb(var(--accent-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
-        sm: "calc(var(--radius) - 4px)",
+        // Profile 1
+        "text-profile1": "rgb(var(--text-profile1))",
+        "background-profile1": "rgb(var(--background-profile1))",
+        "primary-profile1": "rgb(var(--primary-profile1))",
+        "secondary-profile1": "rgb(var(--secondary-profile1))",
+        "accent-profile1": "rgb(var(--accent-profile1))",
+
+        // Profile 2
+        "text-profile2": "rgb(var(--text-profile2))",
+        "background-profile2": "rgb(var(--background-profile2))",
+        "primary-profile2": "rgb(var(--primary-profile2))",
+        "secondary-profile2": "rgb(var(--secondary-profile2))",
+        "accent-profile2": "rgb(var(--accent-profile2))",
       },
     },
   },

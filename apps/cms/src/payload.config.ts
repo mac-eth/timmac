@@ -16,13 +16,18 @@ import { Pages } from "./collections/Pages";
 import { Tenants } from "./collections/Tenants";
 import { Users } from "./collections/Users";
 import {
-  Theme,
-  ThemeGlobal,
-  ThemeGlobalMultiTenantCollection,
-} from "./globals/theme";
+  BrandingGlobal,
+  BrandingGlobalMultiTenantCollection,
+} from "./globals/branding";
 
 export default buildConfig({
-  collections: [Users, Tenants, Pages, ThemeGlobalMultiTenantCollection, Media],
+  collections: [
+    Users,
+    Tenants,
+    Pages,
+    Media,
+    BrandingGlobalMultiTenantCollection,
+  ],
   admin: {
     bundler: webpackBundler(),
     webpack: (config) => ({
@@ -54,7 +59,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
-  globals: [ThemeGlobal],
+  globals: [BrandingGlobal],
   plugins: [
     cloudStorage({
       collections: {

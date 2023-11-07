@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload/types";
 
+import { BannerBlock } from "../../blocks/banner";
 import richText from "../../fields/richText";
 import { tenant } from "../../fields/tenant";
 import { banner } from "../../fields/ui-components/banner";
@@ -65,8 +66,12 @@ export const Pages: CollectionConfig = {
         beforeValidate: [formatSlug("title")],
       },
     },
-    banner,
     tenant,
+    {
+      name: "content",
+      type: "blocks",
+      blocks: [BannerBlock],
+    },
   ],
   endpoints: [
     {
