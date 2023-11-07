@@ -41,6 +41,7 @@
     "DATABASE_URI",
     "PAYLOAD_SECRET",
     "HOST_NAME",
-    "API_HOST"
+    "API_HOST",
+    "NEXT_PUBLIC_API_HOST"
   ]
 }

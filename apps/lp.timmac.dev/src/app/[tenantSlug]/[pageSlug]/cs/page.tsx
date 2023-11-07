@@ -1,6 +1,6 @@
 import type { Page } from "@timmac/cms/src/payload-types";
 
-import LP from "./_components/lp";
+import { LPLivePreview } from "./_components/LPLivePreview";
 
 async function getData({
   tenantSlug,
@@ -31,7 +31,7 @@ export default async function Page({
 
   return (
     <main>
-      <LP page={data} />
+      <LPLivePreview initialData={data} />
     </main>
   );
 }

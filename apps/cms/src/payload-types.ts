@@ -58,12 +58,36 @@ export interface Tenant {
 }
 export interface Page {
   id: string;
+  tenantSlug?: string | null;
   title: string;
   slug?: string | null;
+  banner?: {
+    showBanner?: boolean | null;
+    style?: ('default' | 'scrolling') | null;
+    mainText?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    button?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?: {
+              relationTo: 'pages';
+              value: string | Page;
+            } | null;
+            url?: string | null;
+            label: string;
+            appearance?: ('default' | 'badge' | 'link') | null;
+            size?: ('compact' | 'default' | 'large') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+  };
   tenant?: (string | null) | Tenant;
-  richText: {
-    [k: string]: unknown;
-  }[];
   updatedAt: string;
   createdAt: string;
 }

@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload/types";
 
 import richText from "../../fields/richText";
 import { tenant } from "../../fields/tenant";
+import { banner } from "../../fields/ui-components/banner";
 import { loggedIn } from "./access/loggedIn";
 import { tenantAdmins } from "./access/tenantAdmins";
 import { tenants } from "./access/tenants";
@@ -21,6 +22,15 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
+      name: "tenantSlug",
+      type: "text",
+      admin: {
+        condition: () => {
+          return false;
+        },
+      },
+    },
+    {
       name: "title",
       type: "text",
       required: true,
@@ -34,17 +44,37 @@ export const Pages: CollectionConfig = {
         position: "sidebar",
       },
       hooks: {
+        beforeChange: [
+          async ({
+            data, // incoming data to update or create with
+            req, // full express request
+            operation, // name of the operation ie. 'create', 'update'
+            originalDoc, // original document
+          }) => {
+            // set the tenantSlug field to the slug of the tenant
+            const tenant = await req.payload.find({
+              collection: "tenants",
+              where: {
+                id: { equals: data.tenant },
+              },
+            });
+
+            data.tenantSlug = tenant.docs[0].slug;
+          },
+        ],
         beforeValidate: [formatSlug("title")],
       },
     },
+    banner,
     tenant,
-    richText(),
   ],
   endpoints: [
     {
       path: "/findByTenantSlugAndPageSlug/:tenantSlug/:pageSlug",
       method: "get",
       handler: async (req, res, next) => {
+        console.log(req);
+
         const tenant = await req.payload.find({
           collection: "tenants",
           where: {

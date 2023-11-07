@@ -1,6 +1,7 @@
 import path from "path";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
 // dotenv.config({
@@ -32,8 +33,18 @@ export default buildConfig({
         },
       },
     }),
+    livePreview: {
+      url: ({ data, documentInfo, locale }) => {
+        console.log(data);
+
+        return `http://localhost:3001/${
+          documentInfo.slug === "pages" && `${data.tenantSlug}/${data.slug}/cs/`
+        }`;
+      },
+      collections: ["pages"],
+    },
   },
-  editor: slateEditor({}),
+  editor: lexicalEditor({}),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,
   }),

@@ -1,4 +1,6 @@
-import type { Page } from "@timmac/payload-config/src/payload-types";
+import type { Page } from "@timmac/cms/src/payload-types";
+
+import Banner from "./_components/banner";
 
 async function getData({
   tenantSlug,
@@ -9,6 +11,7 @@ async function getData({
 }) {
   const res = await fetch(
     `${process.env.API_HOST}/api/pages/findByTenantSlugAndPageSlug/${tenantSlug}/${pageSlug}`,
+    { cache: "no-store" },
   );
 
   if (!res.ok) {
@@ -27,9 +30,13 @@ export default async function Page({
   const { tenantSlug, pageSlug } = params;
   const data = await getData({ tenantSlug, pageSlug });
 
+  const banner = data.banner;
+  console.log(banner);
+
   return (
     <main>
-      <div className="text-primary text-4xl">{data.title}</div>
+      <div>{JSON.stringify(data, null, 2)}</div>
+      {data.banner && <Banner banner={data.banner} />}
     </main>
   );
 }

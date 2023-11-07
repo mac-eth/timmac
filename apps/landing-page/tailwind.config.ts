@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +10,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        coolvetica: ["Coolvetica", "sans-serif"],
+        futuraPT: ["Futura PT Light", "sans-serif"],
+        futuraPTDemi: ["Futura PT Demi", "sans-serif"],
+        neueEinstellung: ["Neue Einstellung Bold", "sans-serif"],
+        generalsans: [
+          "General Sans",
+          "sans-serif",
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
       colors: {
         background: "rgb(var(--background))",
         foreground: "rgb(var(--foreground))",
