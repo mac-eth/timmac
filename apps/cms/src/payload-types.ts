@@ -12,6 +12,7 @@ export interface Config {
     tenants: Tenant;
     pages: Page;
     'theme-multi-tenant-collection': ThemeMultiTenantCollection;
+    media: Media;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -111,6 +112,35 @@ export interface ThemeMultiTenantCollection {
   tenant?: (string | null) | Tenant;
   updatedAt: string;
   createdAt: string;
+}
+export interface Media {
+  id: string;
+  alt: string;
+  caption?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  media?: string | Media | null;
+  tenant?: (string | null) | Tenant;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 export interface PayloadPreference {
   id: string;

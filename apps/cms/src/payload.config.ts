@@ -1,8 +1,9 @@
 import path from "path";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+import { s3Adapter } from "@payloadcms/plugin-cloud-storage/s3";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import { slateEditor } from "@payloadcms/richtext-slate";
 import dotenv from "dotenv";
 // dotenv.config({
 //   path: path.resolve(__dirname, "../.env"),
@@ -10,6 +11,7 @@ import dotenv from "dotenv";
 
 import { buildConfig } from "payload/config";
 
+import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Tenants } from "./collections/Tenants";
 import { Users } from "./collections/Users";
@@ -20,13 +22,14 @@ import {
 } from "./globals/theme";
 
 export default buildConfig({
-  collections: [Users, Tenants, Pages, ThemeGlobalMultiTenantCollection],
+  collections: [Users, Tenants, Pages, ThemeGlobalMultiTenantCollection, Media],
   admin: {
     bundler: webpackBundler(),
     webpack: (config) => ({
       ...config,
       resolve: {
         ...config.resolve,
+        fallback: { fs: false },
         alias: {
           ...config.resolve.alias,
           dotenv: path.resolve(__dirname, "./dotenv.js"),
@@ -52,4 +55,24 @@ export default buildConfig({
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   globals: [ThemeGlobal],
+  plugins: [
+    cloudStorage({
+      collections: {
+        // Enable cloud storage for Media collection
+        media: {
+          // Create the S3 adapter
+          adapter: s3Adapter({
+            config: {
+              endpoint: process.env.S3_ENDPOINT,
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID,
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+              },
+            },
+            bucket: process.env.S3_BUCKET,
+          }),
+        },
+      },
+    }),
+  ],
 });
