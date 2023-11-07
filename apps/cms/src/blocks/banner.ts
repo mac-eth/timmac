@@ -39,13 +39,12 @@ const bannerStyles: BannerStyle[] = [
   },
 ];
 
-const checkIsVisble = (data: Partial<any>, field: string) => {
-  console.log("DATA", data);
-  // if (!data.banner) return false;
-  // if (data.banner.hidden === true) return false;
-  // const bannerType = bannerStyles.find((type) => type.value === data.hero.type);
-  // if (!bannerType) return false;
-  // if (!bannerType[field]) return false;
+const checkIsVisble = (siblingData: Partial<any>, field: string) => {
+  const bannerType = bannerStyles.find(
+    (type) => type.value === siblingData.style,
+  );
+  if (!bannerType) return false;
+  if (!bannerType.visibleFields[field]) return false;
   return true;
 };
 
@@ -98,7 +97,8 @@ export const BannerBlock: Block = {
         ],
       }),
       admin: {
-        condition: (data) => checkIsVisble(data, "mainText"),
+        condition: (data, siblingData) =>
+          checkIsVisble(siblingData, "mainText"),
       },
     },
     linkGroup({
@@ -106,6 +106,10 @@ export const BannerBlock: Block = {
         name: "button",
         label: "Button",
         maxRows: 1,
+        admin: {
+          condition: (data, siblingData) =>
+            checkIsVisble(siblingData, "button"),
+        },
       },
     }),
   ],
