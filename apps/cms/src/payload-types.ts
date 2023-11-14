@@ -99,15 +99,46 @@ export interface Page {
             hide?: boolean | null;
             style?: 'default' | null;
             colourProfile?: ('profile1' | 'profile2') | null;
-            mainText?:
-              | {
-                  [k: string]: unknown;
-                }[]
-              | null;
-            subText?:
-              | {
-                  [k: string]: unknown;
-                }[]
+            mainContentSection?:
+              | (
+                  | {
+                      richText?:
+                        | {
+                            [k: string]: unknown;
+                          }[]
+                        | null;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'richText';
+                    }
+                  | {
+                      text: {
+                        [k: string]: unknown;
+                      }[];
+                      stars: number;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'starReview';
+                    }
+                  | {
+                      icon?: 'Check in Circle' | null;
+                      features?:
+                        | {
+                            feature: string;
+                            id?: string | null;
+                          }[]
+                        | null;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'iconListBlock';
+                    }
+                  | {
+                      padding: number;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'padding';
+                    }
+                )[]
               | null;
             image?: (string | null) | Media;
             id?: string | null;

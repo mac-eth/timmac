@@ -1,17 +1,12 @@
-import {
-  BoldTextFeature,
-  HeadingFeature,
-  ItalicTextFeature,
-  lexicalEditor,
-  ParagraphFeature,
-  StrikethroughTextFeature,
-  UnderlineTextFeature,
-} from "@payloadcms/richtext-lexical";
 import { Block } from "payload/types";
 
+import { RichTextBlock } from "../richText";
+import { IconListBlock } from "./blocks/icon-list";
+import { PaddingBlock } from "./blocks/padding";
+import { StarReviewBlock } from "./blocks/stars";
+
 interface VisibleFields {
-  mainText?: boolean;
-  subText?: boolean;
+  mainContentSection?: boolean;
 }
 
 interface HeroStyle {
@@ -25,8 +20,7 @@ const heroStyles: HeroStyle[] = [
     label: "Default",
     value: "default",
     visibleFields: {
-      mainText: true,
-      subText: true,
+      mainContentSection: true,
     },
   },
 ];
@@ -76,45 +70,13 @@ export const HeroBlock: Block = {
       ],
     },
     {
-      name: "mainText",
-      label: "Main Text",
-      type: "richText",
-      editor: lexicalEditor({
-        features: [
-          HeadingFeature({
-            enabledHeadingSizes: ["h1", "h2", "h3", "h4", "h5", "h6"],
-          }),
-          ParagraphFeature(),
-          BoldTextFeature(),
-          ItalicTextFeature(),
-          UnderlineTextFeature(),
-          StrikethroughTextFeature(),
-        ],
-      }),
+      name: "mainContentSection",
+      label: "Main Content Section Blocks",
+      type: "blocks",
+      blocks: [RichTextBlock, StarReviewBlock, IconListBlock, PaddingBlock],
       admin: {
         condition: (data, siblingData) =>
-          checkIsVisble(siblingData, "mainText"),
-      },
-    },
-    {
-      name: "subText",
-      label: "Sub Text",
-      type: "richText",
-      editor: lexicalEditor({
-        features: [
-          HeadingFeature({
-            enabledHeadingSizes: ["h1", "h2", "h3", "h4", "h5", "h6"],
-          }),
-          ParagraphFeature(),
-          BoldTextFeature(),
-          ItalicTextFeature(),
-          UnderlineTextFeature(),
-          StrikethroughTextFeature(),
-        ],
-      }),
-      admin: {
-        condition: (data, siblingData) =>
-          checkIsVisble(siblingData, "mainText"),
+          checkIsVisble(siblingData, "mainContentSection"),
       },
     },
     {

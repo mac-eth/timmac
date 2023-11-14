@@ -1,7 +1,12 @@
-
-
 /** @type {import("next").NextConfig} */
 const config = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "localhost",
+      },
+    ],
+  },
   reactStrictMode: true,
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: ["@timmac/ui"],

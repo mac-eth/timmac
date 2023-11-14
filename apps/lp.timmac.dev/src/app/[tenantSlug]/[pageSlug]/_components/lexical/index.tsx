@@ -30,6 +30,12 @@ interface Props {
   tailwindExpansions?: {
     paragraph?: string;
     bold?: string;
+    h1?: string;
+    h2?: string;
+    h3?: string;
+    h4?: string;
+    h5?: string;
+    br?: string;
   };
 }
 
@@ -123,7 +129,7 @@ export default function Serialize({ nodes, tailwindExpansions }: Props) {
 
         switch (node.type) {
           case "linebreak": {
-            return <br key={index} />;
+            return <br className={cn(tailwindExpansions?.br)} key={index} />;
           }
           case "paragraph": {
             return (
@@ -138,8 +144,20 @@ export default function Serialize({ nodes, tailwindExpansions }: Props) {
               "h1" | "h2" | "h3" | "h4" | "h5"
             >;
             const Tag = node?.tag as Heading;
-            console.log(node);
-            return <Tag key={index}>{serializedChildren}</Tag>;
+            return (
+              <Tag
+                key={index}
+                className={cn(
+                  node?.tag === "h1" && tailwindExpansions?.h1,
+                  node?.tag === "h2" && tailwindExpansions?.h2,
+                  node?.tag === "h3" && tailwindExpansions?.h3,
+                  node?.tag === "h4" && tailwindExpansions?.h4,
+                  node?.tag === "h5" && tailwindExpansions?.h5,
+                )}
+              >
+                {serializedChildren}
+              </Tag>
+            );
           }
           case "list": {
             type List = Extract<keyof JSX.IntrinsicElements, "ul" | "ol">;
