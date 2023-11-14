@@ -1,7 +1,7 @@
 import type { Page } from "@timmac/cms/src/payload-types";
-import Default from "@timmac/ui/src/components/banner/banner-1";
-import Scolling from "@timmac/ui/src/components/banner/scrolling-banner";
 
+import Default from "~/components/blocks/banner/default";
+import Scolling from "~/components/blocks/banner/scrolling";
 import { cn } from "../../../../utils/cn";
 import type { LexicalHelperType, SerializedLexicalNode } from "./lexical";
 import Serialize from "./lexical";
