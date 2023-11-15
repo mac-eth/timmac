@@ -8,7 +8,7 @@ interface HeroIconListProps {
   featureTextClassname: string;
 }
 
-export default function HeroIconList({
+export default function BenefitsList({
   className,
   icon,
   iconClassName,

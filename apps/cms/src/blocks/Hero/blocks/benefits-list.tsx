@@ -1,8 +1,8 @@
 import { lexicalEditor, ParagraphFeature } from "@payloadcms/richtext-lexical";
 import { Block } from "payload/types";
 
-export const IconListBlock: Block = {
-  slug: "iconListBlock",
+export const BenefitsListBlock: Block = {
+  slug: "benefitsListBlock",
   fields: [
     {
       name: "icon",
@@ -12,16 +12,16 @@ export const IconListBlock: Block = {
       options: ["Check in Circle"],
     },
     {
-      name: "features",
+      name: "benefits",
       type: "array",
-      label: "Features",
+      label: "Benefits",
       maxRows: 5,
       minRows: 1,
       fields: [
         {
           type: "text",
-          name: "feature",
-          label: "Feature",
+          name: "benefit",
+          label: "Benefit",
           required: true,
         },
       ],

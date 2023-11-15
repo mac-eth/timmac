@@ -1,12 +1,23 @@
+import {
+  BoldTextFeature,
+  HeadingFeature,
+  ItalicTextFeature,
+  lexicalEditor,
+  ParagraphFeature,
+  StrikethroughTextFeature,
+  UnderlineTextFeature,
+} from "@payloadcms/richtext-lexical";
 import { Block } from "payload/types";
 
-import { RichTextBlock } from "../richText";
-import { IconListBlock } from "./blocks/icon-list";
-import { PaddingBlock } from "./blocks/padding";
+import { BenefitsListBlock } from "./blocks/benefits-list";
 import { StarReviewBlock } from "./blocks/stars";
 
 interface VisibleFields {
-  mainContentSection?: boolean;
+  mainText?: boolean;
+  secondaryText?: boolean;
+  image?: boolean;
+  zoneOne?: boolean;
+  zoneTwo?: boolean;
 }
 
 interface HeroStyle {
@@ -20,7 +31,11 @@ const heroStyles: HeroStyle[] = [
     label: "Default",
     value: "default",
     visibleFields: {
-      mainContentSection: true,
+      mainText: true,
+      secondaryText: true,
+      image: true,
+      zoneOne: true,
+      zoneTwo: true,
     },
   },
 ];
@@ -70,13 +85,61 @@ export const HeroBlock: Block = {
       ],
     },
     {
-      name: "mainContentSection",
-      label: "Main Content Section Blocks",
+      name: "zoneOne",
+      label: "Zone One Block",
       type: "blocks",
-      blocks: [RichTextBlock, StarReviewBlock, IconListBlock, PaddingBlock],
+      maxRows: 1,
+      minRows: 0,
+      blocks: [StarReviewBlock],
+      admin: {
+        condition: (data, siblingData) => checkIsVisble(siblingData, "zoneOne"),
+      },
+    },
+    {
+      name: "zoneTwo",
+      label: "Zone Two Block",
+      type: "blocks",
+      maxRows: 1,
+      minRows: 0,
+      blocks: [BenefitsListBlock],
+      admin: {
+        condition: (data, siblingData) => checkIsVisble(siblingData, "zoneTwo"),
+      },
+    },
+    {
+      name: "mainText",
+      label: "Main Text",
+      type: "richText",
+      editor: lexicalEditor({
+        features: [
+          ParagraphFeature(),
+          BoldTextFeature(),
+          ItalicTextFeature(),
+          UnderlineTextFeature(),
+          StrikethroughTextFeature(),
+        ],
+      }),
       admin: {
         condition: (data, siblingData) =>
-          checkIsVisble(siblingData, "mainContentSection"),
+          checkIsVisble(siblingData, "mainText"),
+      },
+    },
+    {
+      name: "secondaryText",
+      label: "Secondary Text",
+      type: "richText",
+      editor: lexicalEditor({
+        features: [
+          ParagraphFeature(),
+          BoldTextFeature(),
+          ItalicTextFeature(),
+          UnderlineTextFeature(),
+          StrikethroughTextFeature(),
+        ],
+      }),
+      admin: {
+        condition: (data, siblingData) =>
+          checkIsVisble(siblingData, "secondaryText"),
       },
     },
     {
@@ -84,6 +147,9 @@ export const HeroBlock: Block = {
       label: "Image",
       type: "relationship",
       relationTo: "media",
+      admin: {
+        condition: (data, siblingData) => checkIsVisble(siblingData, "image"),
+      },
     },
   ],
 };

@@ -5,10 +5,22 @@ import Container from "../../sections/container";
 
 interface DefaultHeroProps {
   className?: string;
-  contentSectionComponents: {
+  mainText?: {
     component: React.ReactNode;
     className?: string;
-  }[];
+  };
+  secondaryText?: {
+    component: React.ReactNode;
+    className?: string;
+  };
+  zoneOne?: {
+    component: React.ReactNode;
+    className?: string;
+  };
+  zoneTwo?: {
+    component: React.ReactNode;
+    className?: string;
+  };
   image: {
     url: string;
     alt: string;
@@ -23,7 +35,10 @@ const nextPublicS3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET;
 
 export default function DefaultHero({
   className,
-  contentSectionComponents,
+  mainText,
+  secondaryText,
+  zoneOne,
+  zoneTwo,
   image,
 }: DefaultHeroProps): JSX.Element {
   const containerClasses = cn(
@@ -36,11 +51,24 @@ export default function DefaultHero({
       <Container>
         <div className="max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
           <div className="max-w-2xl flex-shrink-0 text-center md:max-w-2xl md:text-left lg:mx-0 lg:flex lg:flex-col lg:justify-center lg:pt-8">
-            {contentSectionComponents.map(({ component, className }, index) => (
-              <div key={index} className={className}>
-                {component}
+            {zoneOne && (
+              <div className={cn(zoneOne.className, "pb-4")}>
+                {zoneOne.component}
               </div>
-            ))}
+            )}
+            {mainText && (
+              <div className={cn(mainText.className, "pb-12 text-7xl")}>
+                {mainText.component}
+              </div>
+            )}
+            {secondaryText && (
+              <div className={cn(secondaryText.className, "text-2xl")}>
+                {secondaryText.component}
+              </div>
+            )}
+            {zoneTwo && (
+              <div className={zoneTwo.className}>{zoneTwo.component}</div>
+            )}
           </div>
           <div className="relative -z-10 mx-auto flex max-w-2xl -translate-y-1/2 translate-x-1/4 justify-center opacity-70 lg:-mt-20 lg:ml-10 lg:mr-0 lg:max-w-none lg:flex-none lg:translate-x-0 lg:translate-y-0 lg:opacity-100 xl:ml-32">
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none ">
