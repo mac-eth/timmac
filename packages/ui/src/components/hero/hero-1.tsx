@@ -60,7 +60,7 @@ export default function LandingPageHero({
               <Image
                 src={imageURL}
                 alt={imageAlt}
-                className={cn("h-auto w-full", imageClassName)}
+                className={cn("h-auto w-[62rem]", imageClassName)}
                 priority
               />
             </div>

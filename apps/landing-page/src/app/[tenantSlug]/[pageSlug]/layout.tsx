@@ -1,4 +1,4 @@
-import type { Theme } from "@timmac/payload-config/src/payload-types";
+import type { Theme } from "@timmac/cms/src/payload-types";
 
 import "../../globals.css";
 
@@ -88,7 +88,10 @@ export default async function Layout({
   );
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="bg-white-50 relative overflow-x-hidden font-futuraPT"
+    >
       <head>
         <style>{`
         @layer base {

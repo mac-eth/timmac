@@ -1,4 +1,6 @@
-import type { Page } from "@timmac/payload-config/src/payload-types";
+import type { Page } from "@timmac/cms/src/payload-types";
+
+import LP from "./_components/lp";
 
 async function getData({
   tenantSlug,
@@ -9,10 +11,10 @@ async function getData({
 }) {
   const res = await fetch(
     `${process.env.API_HOST}/api/pages/findByTenantSlugAndPageSlug/${tenantSlug}/${pageSlug}`,
+    { cache: "no-store" },
   );
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
 
@@ -27,5 +29,9 @@ export default async function Page({
   const { tenantSlug, pageSlug } = params;
   const data = await getData({ tenantSlug, pageSlug });
 
-  return <main>{data.title}</main>;
+  return (
+    <main>
+      <LP page={data} />
+    </main>
+  );
 }
