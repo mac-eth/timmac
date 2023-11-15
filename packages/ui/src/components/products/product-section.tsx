@@ -15,37 +15,35 @@ interface Product {
   href: string;
   imageURL: StaticImageData;
   imageAlt: string;
+  CTA: React.ReactNode;
 }
 
 interface ProductSection {
   icon: React.ReactNode;
+  mainText: React.ReactNode;
+  subText?: React.ReactNode;
   products: Product[];
 }
 
 export default function ProductSection({
   icon,
+  mainText,
+  subText,
   products,
 }: ProductSection): JSX.Element {
   return (
     <div className="bg-neutral-950 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mt-2 font-neueEinstellung text-4xl tracking-tight text-neutral-50 sm:text-5xl">
-            Experience the <span className="underline">NutNinja</span>{" "}
-            Difference
-          </h2>
-        </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-2xl text-neutral-300">
-          Look and Feel your best with these best-selling bundles!
-        </p>
+        <div className="mx-auto max-w-4xl text-center">{mainText}</div>
+        <div className="mx-auto mt-4 max-w-4xl text-center">{subText}</div>
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {products.map((product) => (
             <div
               key={product.id}
               className={cn(
                 product.mostPopular
-                  ? "bg-neutral-50/5 ring-2 ring-[#FFD700]"
-                  : "ring-1 ring-neutral-50/10",
+                  ? "bg-neutral-50/10 shadow-lg shadow-[#FFD700] ring-2 ring-[#FFD700]"
+                  : "shadow-md shadow-neutral-50/20 ring-1 ring-neutral-50/20",
                 "rounded-3xl p-8 xl:p-10",
               )}
             >
@@ -69,7 +67,7 @@ export default function ProductSection({
               />
               <ul
                 role="list"
-                className="mt-4 space-y-3 text-sm leading-6 text-neutral-300 xl:mt-4"
+                className="mt-4 space-y-3 text-sm leading-6 text-neutral-100 xl:mt-4"
               >
                 <span className=" font-futuraPTDemi text-lg">Includes:</span>
                 {product.includes.map((include) => (
@@ -79,26 +77,7 @@ export default function ProductSection({
                   </li>
                 ))}
               </ul>
-              <Button
-                className="mt-4 min-w-full rounded-xl shadow-md"
-                backgroundColor={
-                  product.mostPopular ? "bg-[#FFD700]" : "bg-neutral-50"
-                }
-                text={
-                  <p className=" font-futuraPTDemi">
-                    Buy Now - {product.price}{" "}
-                    <span className="text-sm line-through">
-                      {product.comparisonPrice}
-                    </span>
-                  </p>
-                }
-                href="#"
-                underText={
-                  <p className="text-md mt-2 text-neutral-200 underline">
-                    Free Shipping to Australia
-                  </p>
-                }
-              />
+              {product.CTA}
             </div>
           ))}
         </div>
