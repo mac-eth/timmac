@@ -145,6 +145,25 @@ export interface Page {
             blockName?: string | null;
             blockType: 'hero';
           }
+        | {
+            hide?: boolean | null;
+            style?: 'default' | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            mainText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            imageRow?:
+              | {
+                  image: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'big-brand-social-proof';
+          }
       )[]
     | null;
   updatedAt: string;

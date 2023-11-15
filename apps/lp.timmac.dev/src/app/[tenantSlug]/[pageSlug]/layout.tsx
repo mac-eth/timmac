@@ -63,24 +63,6 @@ export default async function Layout({
   );
   const accentProfile2 = hexToRgb(branding.profile2?.accentColour ?? "#000000");
 
-  console.log(`
-    @layer base {
-      :root {
-        --background-profile1: ${backgroundProfile1?.r}, ${backgroundProfile1?.g}, ${backgroundProfile1?.b};
-        --text-profile1: ${textProfile1?.r}, ${textProfile1?.g}, ${textProfile1?.b};
-        --primary-profile1: ${primaryProfile1?.r}, ${primaryProfile1?.g}, ${primaryProfile1?.b};
-        --secondary-profile1: ${secondaryProfile1?.r}, ${secondaryProfile1?.g}, ${secondaryProfile1?.b};
-        --accent-profile1: ${accentProfile1?.r}, ${accentProfile1?.g}, ${accentProfile1?.b};
-
-        --background-profile2: ${backgroundProfile2?.r}, ${backgroundProfile2?.g}, ${backgroundProfile2?.b};
-        --text-profile2: ${textProfile2?.r}, ${textProfile2?.g}, ${textProfile2?.b};
-        --primary-profile2: ${primaryProfile2?.r}, ${primaryProfile2?.g}, ${primaryProfile2?.b};
-        --secondary-profile2: ${secondaryProfile2?.r}, ${secondaryProfile2?.g}, ${secondaryProfile2?.b};
-        --accent-profile2: ${accentProfile2?.r}, ${accentProfile2?.g}, ${accentProfile2?.b};
-      }
-    }
-  `);
-
   return (
     <html
       lang="en"
