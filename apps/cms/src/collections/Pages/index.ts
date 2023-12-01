@@ -1,8 +1,11 @@
 import type { CollectionConfig } from "payload/types";
 
 import { BannerBlock } from "../../blocks/banner";
-import { bigBrandSocialProofBlock } from "../../blocks/bigBrandSocialProofBanner";
+import { FeaturesBlock } from "../../blocks/features";
 import { HeroBlock } from "../../blocks/Hero";
+import { logoListBlock } from "../../blocks/logoList";
+import { ProductListBlock } from "../../blocks/productList";
+import { TestimonialBlock } from "../../blocks/testimonials";
 import richText from "../../fields/richText";
 import { tenant } from "../../fields/tenant";
 import { banner } from "../../fields/ui-components/banner";
@@ -72,7 +75,14 @@ export const Pages: CollectionConfig = {
     {
       name: "content",
       type: "blocks",
-      blocks: [BannerBlock, HeroBlock, bigBrandSocialProofBlock],
+      blocks: [
+        BannerBlock,
+        HeroBlock,
+        logoListBlock,
+        FeaturesBlock,
+        TestimonialBlock,
+        ProductListBlock,
+      ],
     },
   ],
   endpoints: [

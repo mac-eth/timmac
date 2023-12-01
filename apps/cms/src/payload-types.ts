@@ -12,12 +12,12 @@ export interface Config {
     tenants: Tenant;
     pages: Page;
     media: Media;
-    'branding-multi-tenant-collection': BrandingMultiTenantCollection;
+    'style-multi-tenant-collection': StyleMultiTenantCollection;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   globals: {
-    branding: Branding;
+    style: Style;
   };
 }
 export interface User {
@@ -143,20 +143,92 @@ export interface Page {
             hide?: boolean | null;
             style?: 'default' | null;
             colourProfile?: ('profile1' | 'profile2') | null;
-            mainText?:
+            tagLine?:
               | {
                   [k: string]: unknown;
                 }[]
               | null;
-            imageRow?:
+            logos?:
               | {
-                  image: string | Media;
+                  image?: string | Media | null;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'big-brand-social-proof';
+            blockType: 'logo-list';
+          }
+        | {
+            hide?: boolean | null;
+            style?: 'default' | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            titleText?: string | null;
+            features?:
+              | {
+                  title: string;
+                  description: {
+                    [k: string]: unknown;
+                  }[];
+                  icon: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            image?: string | Media | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            hide?: boolean | null;
+            style?: 'default' | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            testimonials?:
+              | {
+                  image?: string | Media | null;
+                  title: {
+                    [k: string]: unknown;
+                  }[];
+                  quote: {
+                    [k: string]: unknown;
+                  }[];
+                  author: string;
+                  stars?: number | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            hide?: boolean | null;
+            style?: 'default' | null;
+            colourProfile?: ('profile1' | 'profile2') | null;
+            titleText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            products?:
+              | {
+                  name: string;
+                  price?: number | null;
+                  link?: string | null;
+                  mostPopular?: boolean | null;
+                  image?: string | Media | null;
+                  includes?:
+                    | {
+                        amount?: number | null;
+                        description?: string | null;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'product-list';
           }
       )[]
     | null;
@@ -192,22 +264,15 @@ export interface Media {
     };
   };
 }
-export interface BrandingMultiTenantCollection {
+export interface StyleMultiTenantCollection {
   id: string;
-  profile1?: {
-    textColour?: string | null;
-    backgroundColour?: string | null;
-    primaryColour?: string | null;
-    secondaryColour?: string | null;
-    accentColour?: string | null;
-  };
-  profile2?: {
-    textColour?: string | null;
-    backgroundColour?: string | null;
-    primaryColour?: string | null;
-    secondaryColour?: string | null;
-    accentColour?: string | null;
-  };
+  styles?:
+    | {
+        slug: string;
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
   tenant?: (string | null) | Tenant;
   updatedAt: string;
   createdAt: string;
@@ -238,22 +303,15 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-export interface Branding {
+export interface Style {
   id: string;
-  profile1?: {
-    textColour?: string | null;
-    backgroundColour?: string | null;
-    primaryColour?: string | null;
-    secondaryColour?: string | null;
-    accentColour?: string | null;
-  };
-  profile2?: {
-    textColour?: string | null;
-    backgroundColour?: string | null;
-    primaryColour?: string | null;
-    secondaryColour?: string | null;
-    accentColour?: string | null;
-  };
+  styles?:
+    | {
+        slug: string;
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

@@ -15,32 +15,12 @@ import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Tenants } from "./collections/Tenants";
 import { Users } from "./collections/Users";
-import {
-  BrandingGlobal,
-  BrandingGlobalMultiTenantCollection,
-} from "./globals/branding";
+import { StyleGlobal, StyleGlobalMultiTenantCollection } from "./globals/style";
 
 export default buildConfig({
-  collections: [
-    Users,
-    Tenants,
-    Pages,
-    Media,
-    BrandingGlobalMultiTenantCollection,
-  ],
+  collections: [Users, Tenants, Pages, Media, StyleGlobalMultiTenantCollection],
   admin: {
     bundler: webpackBundler(),
-    webpack: (config) => ({
-      ...config,
-      resolve: {
-        ...config.resolve,
-        fallback: { fs: false },
-        alias: {
-          ...config.resolve.alias,
-          dotenv: path.resolve(__dirname, "./dotenv.js"),
-        },
-      },
-    }),
     livePreview: {
       url: ({ data, documentInfo, locale }) => {
         console.log(data);
@@ -59,7 +39,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
-  globals: [BrandingGlobal],
+  globals: [StyleGlobal],
   plugins: [
     cloudStorage({
       collections: {

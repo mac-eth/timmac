@@ -10,6 +10,7 @@ import { Block } from "payload/types";
 
 import { ColourProfileField } from "../fields/colourProfile";
 import { HideField } from "../fields/hideField";
+import { ImageField } from "../fields/imageField";
 import linkGroup from "../fields/linkGroup";
 import { checkIsVisible, createStyles, StyleField } from "../fields/styleField";
 
@@ -17,24 +18,19 @@ const styles = createStyles([
   {
     label: "Default",
     value: "default",
-    visibleFields: ["mainText", "button"],
-  },
-  {
-    label: "Scrolling",
-    value: "scrolling",
-    visibleFields: ["mainText"],
+    visibleFields: ["tagLine", "logos"],
   },
 ]);
 
-export const BannerBlock: Block = {
-  slug: "banner",
+export const logoListBlock: Block = {
+  slug: "logo-list",
   fields: [
     HideField,
     StyleField({ styles }),
     ColourProfileField,
     {
-      name: "mainText",
-      label: "Main Text",
+      name: "tagLine",
+      label: "Tag Line",
       type: "richText",
       editor: lexicalEditor({
         features: [
@@ -47,19 +43,20 @@ export const BannerBlock: Block = {
       }),
       admin: {
         condition: (data, siblingData) =>
-          checkIsVisible(styles, siblingData, "mainText"),
+          checkIsVisible(styles, siblingData, "tagLine"),
       },
     },
-    linkGroup({
-      overrides: {
-        name: "button",
-        label: "Button",
-        maxRows: 1,
-        admin: {
-          condition: (data, siblingData) =>
-            checkIsVisible(styles, siblingData, "button"),
-        },
+    {
+      name: "logos",
+      label: "Logos",
+      type: "array",
+      minRows: 1,
+      maxRows: 100,
+      admin: {
+        condition: (data, siblingData) =>
+          checkIsVisible(styles, siblingData, "logos"),
       },
-    }),
+      fields: [ImageField()],
+    },
   ],
 };

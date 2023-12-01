@@ -9,81 +9,30 @@ import {
 } from "@payloadcms/richtext-lexical";
 import { Block } from "payload/types";
 
+import { ColourProfileField } from "../../fields/colourProfile";
+import { HideField } from "../../fields/hideField";
+import {
+  checkIsVisible,
+  createStyles,
+  StyleField,
+} from "../../fields/styleField"; 
 import { BenefitsListBlock } from "./blocks/benefits-list";
 import { StarReviewBlock } from "./blocks/stars";
 
-interface VisibleFields {
-  mainText?: boolean;
-  secondaryText?: boolean;
-  image?: boolean;
-  zoneOne?: boolean;
-  zoneTwo?: boolean;
-}
-
-interface HeroStyle {
-  label: string;
-  value: string;
-  visibleFields?: VisibleFields;
-}
-
-const heroStyles: HeroStyle[] = [
+const styles = createStyles([
   {
     label: "Default",
     value: "default",
-    visibleFields: {
-      mainText: true,
-      secondaryText: true,
-      image: true,
-      zoneOne: true,
-      zoneTwo: true,
-    },
+    visibleFields: ["mainText", "secondaryText", "image", "zoneOne", "zoneTwo"],
   },
-];
-
-const checkIsVisble = (siblingData: Partial<any>, field: string) => {
-  const bannerType = heroStyles.find(
-    (type) => type.value === siblingData.style,
-  );
-  if (!bannerType) return false;
-  if (!bannerType.visibleFields[field]) return false;
-  return true;
-};
+]);
 
 export const HeroBlock: Block = {
   slug: "hero",
   fields: [
-    {
-      name: "hide",
-      label: "Hide",
-      type: "checkbox",
-      defaultValue: false,
-    },
-    {
-      name: "style",
-      label: "Style",
-      type: "select",
-      defaultValue: "default",
-      options: heroStyles.map((style) => ({
-        label: style.label,
-        value: style.value,
-      })),
-    },
-    {
-      name: "colourProfile",
-      label: "Colour Profile",
-      type: "select",
-      defaultValue: "profile1",
-      options: [
-        {
-          label: "Profile 1",
-          value: "profile1",
-        },
-        {
-          label: "Profile 2",
-          value: "profile2",
-        },
-      ],
-    },
+    HideField,
+    StyleField({ styles }),
+    ColourProfileField,
     {
       name: "zoneOne",
       label: "Zone One Block",
@@ -92,7 +41,8 @@ export const HeroBlock: Block = {
       minRows: 0,
       blocks: [StarReviewBlock],
       admin: {
-        condition: (data, siblingData) => checkIsVisble(siblingData, "zoneOne"),
+        condition: (data, siblingData) =>
+          checkIsVisible(styles, siblingData, "zoneOne"),
       },
     },
     {
@@ -103,7 +53,8 @@ export const HeroBlock: Block = {
       minRows: 0,
       blocks: [BenefitsListBlock],
       admin: {
-        condition: (data, siblingData) => checkIsVisble(siblingData, "zoneTwo"),
+        condition: (data, siblingData) =>
+          checkIsVisible(styles, siblingData, "zoneTwo"),
       },
     },
     {
@@ -121,7 +72,7 @@ export const HeroBlock: Block = {
       }),
       admin: {
         condition: (data, siblingData) =>
-          checkIsVisble(siblingData, "mainText"),
+          checkIsVisible(styles, siblingData, "mainText"),
       },
     },
     {
@@ -139,7 +90,7 @@ export const HeroBlock: Block = {
       }),
       admin: {
         condition: (data, siblingData) =>
-          checkIsVisble(siblingData, "secondaryText"),
+          checkIsVisible(styles, siblingData, "secondaryText"),
       },
     },
     {
@@ -148,7 +99,8 @@ export const HeroBlock: Block = {
       type: "relationship",
       relationTo: "media",
       admin: {
-        condition: (data, siblingData) => checkIsVisble(siblingData, "image"),
+        condition: (data, siblingData) =>
+          checkIsVisible(styles, siblingData, "image"),
       },
     },
   ],

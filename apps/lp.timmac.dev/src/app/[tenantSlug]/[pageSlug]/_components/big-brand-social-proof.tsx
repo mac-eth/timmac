@@ -33,12 +33,12 @@ export default function BigBrandSocialProof({
             bbsp.colourProfile === "profile2" && "bg-accent-profile2",
           )}
           BackgroundColor={cn(
-            bbsp.colourProfile === "profile1" && "bg-text-profile1",
-            bbsp.colourProfile === "profile2" && "bg-text-profile1",
+            bbsp.colourProfile === "profile1" && "bg-background-profile1",
+            bbsp.colourProfile === "profile2" && "bg-background-profile2",
           )}
           TextColor={cn(
-            bbsp.colourProfile === "profile1" && "text-background-profile1",
-            bbsp.colourProfile === "profile2" && "text-background-profile2",
+            bbsp.colourProfile === "profile1" && "text-text-profile1",
+            bbsp.colourProfile === "profile2" && "text-text-profile2",
           )}
           Quote={
             <Serialize

@@ -1,3 +1,5 @@
+import * as fa from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 import LandingPageBanner from "@timmac/ui/src/components/banner/banner-1";
@@ -30,8 +32,11 @@ import MensHealthLogoBlack from "~/assets/nut-ninja/mens-health-logo-black.svg";
 import MensJournalLogoBlack from "~/assets/nut-ninja/mens-journal-logo-black.svg";
 
 export default function Page() {
+  const iconName = "faSkull";
+
   return (
     <>
+      <FontAwesomeIcon icon={fa[iconName]} />
       <LandingPageBanner
         MainText={
           <p className="text-center lg:text-left">
